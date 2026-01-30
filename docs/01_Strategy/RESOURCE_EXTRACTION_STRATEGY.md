@@ -1,0 +1,956 @@
+﻿# Mars 由ъ냼??異붿텧 諛??뚰겕?ㅽ럹?댁뒪 ?듯빀 ?꾨왂
+
+> ?꾩옱 異붿텧??ResourceListInfo瑜?湲곕컲?쇰줈 VS Code ?뚰겕?ㅽ럹?댁뒪?먯꽌 由ъ냼?ㅻ? 愿由ы븯怨??몄쭛?????덈뒗 醫낇빀 ?꾨왂
+
+**?묒꽦??*: 2026-01-29  
+**?곹깭**: ?꾨왂 遺꾩꽍 & 異붿쿇
+
+---
+
+## 紐⑹감
+
+1. [?꾩옱 ?곹솴 遺꾩꽍](#1-?꾩옱-?곹솴-遺꾩꽍)
+2. [由ъ냼??異붿텧 ?꾨왂 鍮꾧탳](#2-由ъ냼??異붿텧-?꾨왂-鍮꾧탳)
+3. [?뚰겕?ㅽ럹?댁뒪 ?대뜑 援ъ“](#3-?뚰겕?ㅽ럹?댁뒪-?대뜑-援ъ“)
+4. [?섏젙 ?뚰겕?뚮줈??(#4-?섏젙-?뚰겕?뚮줈??
+5. [援ы쁽 ?덉떆](#5-援ы쁽-?덉떆)
+6. [異붿쿇 諛⑹븞 (?섏씠釉뚮━??](#6-異붿쿇-諛⑹븞--?섏씠釉뚮━???꾨왂)
+7. [?쇱젙 諛??④퀎蹂??ㅽ뻾](#7-?쇱젙-諛??④퀎蹂??ㅽ뻾)
+
+---
+
+## 1. ?꾩옱 ?곹솴 遺꾩꽍
+
+### 1.1 異붿텧??硫뷀??곗씠??
+```
+ResourceListInfo (JSON)
+?쒋?? 185媛?由ъ냼???뺣낫
+?쒋?? 媛?由ъ냼?? 
+??  ?쒋?? id
+??  ?쒋?? name
+??  ?쒋?? type (Image, Model, Video, Audio)
+??  ?쒋?? width, height
+??  ?쒋?? thumbnail (Base64)
+??  ?붴?? resource_path
+?붴?? ????꾩튂: analysis_temp/intro/resource_manifest.json
+```
+
+### 1.2 由ъ냼???곗씠???꾩튂
+| ?뱀뀡 | ?뺤떇 | ?곹깭 | ?ш린 異붿젙 |
+|------|------|------|---------|
+| **ResourceListInfo** | JSON (UTF-8) | ??異붿텧??| ~5MB |
+| **ResourceThumbnail** | Base64 (JSON) | ??異붿텧??| ~50MB |
+| **Resources** | GZIP ??Binary | ??誘몄텛異?| ~200MB |
+
+### 1.3 湲곗〈 ?대뜑 援ъ“
+```
+Contents/
+?쒋?? ?명듃濡?mars              # ?먮낯 Mars ?뚯씪
+?붴?? ?섎같?꾨컲媛쒖슂.mars
+
+Contents/              # 理쒖쥌 ???援ъ“
+?쒋?? ?명듃濡?
+??  ?쒋?? README.md
+??  ?쒋?? tree.toml
+??  ?붴?? objects/
+?붴?? ?섎같?꾨컲媛쒖슂/
+
+resource/                   # 怨듭슜 由ъ냼??
+?쒋?? common/
+?쒋?? intro/
+?붴?? overview/
+
+analysis_temp/              # ?꾩떆 遺꾩꽍 寃곌낵
+?붴?? intro/
+    ?쒋?? ContentsInfo.json
+    ?쒋?? object_list.csv
+    ?쒋?? resource_manifest.json
+    ?붴?? version_info.json
+```
+
+---
+
+## 2. 由ъ냼??異붿텧 ?꾨왂 鍮꾧탳
+
+### ?듭뀡 A: ?щ꽕?쇰쭔 異붿텧 (Thumbnail-Only)
+
+**紐⑺몴**: 鍮좊Ⅸ ?쒓컖???뺤씤
+
+```
+?μ젏:
+???띾룄 留ㅼ슦 鍮좊쫫 (利됱떆 ?ㅽ뻾 媛??
+?????怨듦컙 ?묒쓬 (~50MB)
+??VS Code?먯꽌 ?몃꽕???꾨━酉?媛??
+??由ъ냼??紐⑸줉 鍮좊Ⅸ ?뚯븙
+
+?⑥젏:
+???몄쭛 遺덇???(??댁긽??
+???먮낯 ?뚯씪 ?뺣낫 遺議?
+???섏쨷???먮낯 異붿텧 ?꾩슂
+??硫뷀??곗씠?곕쭔?쇰줈???뚯씪紐??щ㎎ 遺덈챸?뺥븷 ???덉쓬
+
+?ъ슜 ?쒕굹由ъ삤:
+??Mars ?뚯씪??由ъ냼?ㅻ? 鍮좊Ⅴ寃??섎윭蹂닿퀬 ?띠쓣 ??
+???대뼡 由ъ냼?ㅺ? ?덈뒗吏留??뺤씤?섍퀬 ?띠쓣 ??
+???꾩옱 ?꾨줈?앺듃???鍮꾧탳 寃??
+
+?ㅽ뻾 ?쒓컙:
+??<1珥?
+
+援ы쁽 蹂듭옟??
+????쓬 (?대? 異붿텧???곗씠???쒖슜)
+```
+
+**援ы쁽 ?덉떆**:
+```powershell
+# ?몃꽕??異붿텧 諛?Preview ?대?吏 ?앹꽦
+$manifest = Get-Content "analysis_temp/intro/resource_manifest.json" | ConvertFrom-Json
+foreach ($resource in $manifest.resources) {
+    # Base64 ?몃꽕????PNG ?뚯씪
+    $thumbnailBase64 = $resource.thumbnail
+    $bytes = [Convert]::FromBase64String($thumbnailBase64)
+    [IO.File]::WriteAllBytes("resource/intro/images/THUMB_$($resource.name).png", $bytes)
+}
+```
+
+---
+
+### ?듭뀡 B: ?ㅼ젣 ?뚯씪 異붿텧 (Full Extraction)
+
+**紐⑺몴**: ?꾩쟾??由ъ냼???몄쭛 媛??
+
+```
+?μ젏:
+???먮낯 ?뚯씪 吏곸젒 ?섏젙 媛??
+??紐⑤뱺 由ъ냼???덉쭏 ?좎?
+??VS Code ?먮뵒???쒖슜 媛??
+???몃? ?꾧뎄(Photoshop, 3D Studio ?? ?몄쭛 媛??
+???꾨꼍??由ъ냼??愿由?
+
+?⑥젏:
+??援ы쁽 蹂듭옟??(諛붿씠?덈━ ?뚯떛 ?꾩슂)
+??異붿텧 ?쒓컙 ?ㅻ옒 嫄몃┝ (~30遺?
+?????怨듦컙 留롮씠 ?꾩슂 (~200MB+)
+???먮낯怨??섏젙蹂?援щ텇 ?꾩슂
+???ы룷??濡쒖쭅 蹂듭옟 (???꾨줈?몄뒪)
+
+?ъ슜 ?쒕굹由ъ삤:
+??湲곗〈 Mars ?뚯씪???대?吏/紐⑤뜽???ъ궗?⑺븯怨??섏젙?섍퀬 ?띠쓣 ??
+??紐⑤뱺 由ъ냼?ㅻ? ?뚰겕?ㅽ럹?댁뒪?먯꽌 愿由ы븯怨??띠쓣 ??
+???꾨꼍???먯뀑 ?쇱씠釉뚮윭由щ? 援ъ텞?섍퀬 ?띠쓣 ??
+
+?ㅽ뻾 ?쒓컙:
+??20-30遺?(諛붿씠?덈━ ?뚯떛)
+
+援ы쁽 蹂듭옟??
+???믪쓬 (GZIP ?댁젣 + ?뚯씪 援ъ“ ?뚯떛 ?꾩슂)
+```
+
+**援ы쁽 ?쒖젣**:
+```
+1. Resources ?뱀뀡 諛붿씠?덈━ 援ъ“ ?뚯떛
+   - ?뚯씪 寃쎈줈 ?몄퐫??(UTF-16LE?)
+   - ?뚯씪 ?ш린 ?뺣낫 異붿텧
+   - ?뚯씪 ?곗씠??寃쎄퀎 ?앸퀎
+
+2. 媛??뚯씪???뺥솗??寃쎄퀎 ?앸퀎
+   - 硫뷀??곗씠???놁씠 諛붿씠?덈━?먯꽌 ?뚯씪 援щ텇
+   - ?뚯씪 ??낅퀎濡?留ㅼ쭅?섎쾭 ?뺤씤?
+   
+3. ?ы룷???꾨줈?몄뒪
+   - ?섏젙???뚯씪??GZIP?쇰줈 ?ㅼ떆 ?뺤텞
+   - Mars ?뚯씪 ?щ㎎ ?좎?
+```
+
+---
+
+### ?듭뀡 C: ?섏씠釉뚮━??(Hybrid - 沅뚯옣)
+
+**紐⑺몴**: 鍮좊Ⅸ ?뺤씤 + ?좏깮???먮낯 異붿텧
+
+```
+?μ젏:
+???④린: ?몃꽕?쇰줈 鍮좊Ⅸ ?뺤씤 (利됱떆)
+??以묎린: ?꾩슂??由ъ냼?ㅻ쭔 ?먮낯 異붿텧
+???좎뿰??(?꾩슂???곕씪 ?뺤옣)
+???쒕쾭 由ъ냼???⑥쑉??(?꾩껜 異붿텧 遺덊븘??
+???④퀎???묒뾽 媛??
+
+?⑥젏:
+??珥덇린 ?ㅺ퀎 ?쒓컙 ?꾩슂
+???ㅽ겕由쏀듃 ?щ윭 媛?愿由?
+???곹깭 異붿쟻 硫붿빱?덉쬁 ?꾩슂
+
+?ъ슜 ?쒕굹由ъ삤:
+??**?꾩옱 ?꾨줈?앺듃??理쒖쟻**
+??鍮좊Ⅸ ?꾨줈?좏??????꾩슂??寃껊쭔 異붿텧
+??湲곗〈 Mars? ?덈줈??MCP 肄섑뀗痢??쇳빀
+
+?ㅽ뻾 ?쒓컙:
+???④퀎 1 (?몃꽕??: <1珥?
+???④퀎 2 (?좏깮 由ъ냼??: 媛??뚯씪???섏큹
+
+援ы쁽 蹂듭옟??
+??以묎컙 (紐⑤뱢?? ?④퀎蹂?
+
+?뺤옣??
+??留ㅼ슦 ?믪쓬 (?꾨줈?앺듃 吏꾪뻾???곕씪 而ㅼ뒪?곕쭏?댁쭠 媛??
+```
+
+**援ы쁽 援ъ“**:
+```
+1?④퀎: ?몃꽕??異붿텧 + ?몃깽?좊━
+   ?붴? Extract-Thumbnails.ps1
+   ?붴? resource/intro/images/THUMB_*.png
+   ?붴? RESOURCE_INVENTORY.json (硫뷀??곗씠??
+
+2?④퀎: ?꾩슂??由ъ냼?ㅻ쭔 異붿텧 (?좏깮??
+   ?쒋? Extract-SelectedResources.ps1
+   ?쒋? ?좏깮 紐⑸줉: resource_selection.txt
+   ?붴? resource/intro/images/*.png, models/*.fbx ??
+
+3?④퀎: 蹂寃쎌궗??異붿쟻
+   ?붴? RESOURCE_CHANGES.json
+   ?쒋? ?먮낯 ?댁떆
+   ?쒋? ?섏젙蹂??댁떆
+   ?붴? ?섏젙 ?쇱떆
+```
+
+---
+
+### ?듭뀡 D: ?좉퇋 肄섑뀗痢?以묒떖 (New Content Focus)
+
+**紐⑺몴**: 湲곗〈? 李멸퀬, ?덈줈??寃껋? MCP濡??앹꽦
+
+```
+?μ젏:
+??媛??鍮좊Ⅸ 援ы쁽 (?덈줈??由ъ냼?ㅻ쭔 愿由?
+??MarsCatalogue 援ъ“? ?쇱튂
+??MCP ?듯빀 媛꾪렪 (湲곗〈怨?遺꾨━)
+??誘몃옒 ?좎?蹂댁닔 ?⑹씠
+???덉륫 媛?ν븳 援ъ“
+
+?⑥젏:
+??湲곗〈 由ъ냼???ъ궗??遺덇?
+??湲곗〈 Mars????곗씠??援먰솚 ?대젮?
+??泥섏쓬遺???ㅼ떆 援ъ꽦 ?꾩슂
+
+?ъ슜 ?쒕굹由ъ삤:
+??湲곗〈 Mars???덊띁?곗뒪留?(?쎄린)
+??紐⑤뱺 肄섑뀗痢좊? MarsCatalogue?먯꽌 ?좉퇋 ?묒꽦
+??0遺??理쒖쟻?붾맂 援ъ“ 援ъ텞
+
+?κ린 ?꾨왂:
+???먯쭊?곸쑝濡?湲곗〈 Mars 由ъ냼?ㅻ? ?좉퇋 援ъ“濡?留덉씠洹몃젅?댁뀡
+
+?ㅽ뻾 ?쒓컙:
+??遺덊븘??(MCP濡?泥섏쓬遺???쒖옉)
+
+援ы쁽 蹂듭옟??
+????쓬 (湲곗〈 異붿텧 濡쒖쭅 遺덊븘??
+```
+
+---
+
+## 3. ?뚰겕?ㅽ럹?댁뒪 ?대뜑 援ъ“
+
+### 3.1 ?듭뀡 C (沅뚯옣) - ?섏씠釉뚮━??援ъ“
+
+```
+poly-dream-electric/
+??
+?쒋?? resource/                           # 理쒖쥌 ?묒뾽 由ъ냼??
+??  ?쒋?? common/                         # 怨듭슜 由ъ냼??
+??  ??  ?쒋?? images/
+??  ??  ?쒋?? models/
+??  ??  ?붴?? audio/
+??  ??
+??  ?쒋?? intro/
+??  ??  ?쒋?? images/
+??  ??  ??  ?쒋?? THUMB_*.png            # ?몃꽕??(湲곗〈 Mars)
+??  ??  ??  ?붴?? *.png                  # 異붿텧???먮낯 ?대?吏
+??  ??  ?쒋?? models/
+??  ??  ??  ?쒋?? THUMB_*.png
+??  ??  ??  ?붴?? *.fbx                  # 異붿텧??3D 紐⑤뜽
+??  ??  ?쒋?? audio/
+??  ??  ??  ?붴?? *.mp3
+??  ??  ?붴?? RESOURCE_INVENTORY.json    # 由ъ냼???몃깽?좊━
+??  ??
+??  ?붴?? overview/
+??      ?붴?? [?숈씪 援ъ“]
+??
+?쒋?? Contents/                      # MCP ???援ъ“
+??  ?쒋?? ?명듃濡?
+??  ??  ?쒋?? resource/                  # ?좉퇋 由ъ냼??
+??  ??  ??  ?쒋?? images/
+??  ??  ??  ?쒋?? models/
+??  ??  ??  ?붴?? audio/
+??  ??  ?쒋?? objects/                   # MCP濡??앹꽦??媛앹껜
+??  ??  ??  ?쒋?? <GUID>/object.toml
+??  ??  ??  ?붴?? ...
+??  ??  ?쒋?? tree.toml                  # 怨꾩링 援ъ“
+??  ??  ?붴?? README.md                  # 肄섑뀗痢??ㅻ챸
+??  ??
+??  ?붴?? ?섎같?꾨컲媛쒖슂/
+??      ?붴?? [?숈씪 援ъ“]
+??
+?쒋?? Contents/
+??  ?쒋?? ?명듃濡?mars                     # ?먮낯 Mars (?쎄린 ?꾩슜)
+??  ?붴?? ?섎같?꾨컲媛쒖슂.mars
+??
+?쒋?? analysis_temp/                      # 遺꾩꽍 寃곌낵 (?꾩떆)
+??  ?쒋?? intro/
+??  ??  ?쒋?? resource_manifest.json      # ResourceListInfo
+??  ??  ?쒋?? resource_changes.json       # 蹂寃?異붿쟻
+??  ??  ?쒋?? resource_selection.txt      # 異붿텧??由ъ냼??紐⑸줉
+??  ??  ?붴?? ...
+??  ?붴?? overview/
+??      ?붴?? [?숈씪 援ъ“]
+??
+?붴?? scripts/                            # ?묒뾽 ?ㅽ겕由쏀듃
+    ?쒋?? Extract-Thumbnails.ps1         # 1?④퀎: ?몃꽕??異붿텧
+    ?쒋?? Extract-SelectedResources.ps1  # 2?④퀎: 由ъ냼??異붿텧
+    ?쒋?? Track-Changes.ps1              # 蹂寃쎌궗??異붿쟻
+    ?쒋?? Build-Mars.ps1                 # 理쒖쥌 Mars ?ш뎄??
+    ?붴?? Generate-ResourceInventory.ps1 # ?몃깽?좊━ ?앹꽦
+```
+
+### 3.2 ?뚯씪紐?洹쒖튃
+
+**湲곗〈 Mars?먯꽌 異붿텧??由ъ냼??*:
+```
+?먮낯 ?뚯씪紐?        image_01.png
+異붿텧 ?????        {ORIGINAL_NAME}.png
+?몃꽕??            THUMB_{ORIGINAL_NAME}.png
+硫뷀??곗씠??        {ORIGINAL_NAME}.meta.json
+```
+
+**?좉퇋 MCP ?앹꽦 由ъ냼??*:
+```
+?뚯씪紐?            {ContentName}_{ResourceType}_{Index}.png
+??                intro_hero_image_001.png
+                   overview_model_motor_001.fbx
+                   intro_bgm_001.mp3
+```
+
+**蹂寃?異붿쟻**:
+```
+?먮낯 ?댁떆:         {FILENAME}.original.sha256
+?섏젙蹂??댁떆:       {FILENAME}.sha256
+?곹깭:             {FILENAME}.status.json
+```
+
+### 3.3 RESOURCE_INVENTORY.json 援ъ“
+
+```json
+{
+  "metadata": {
+    "source_mars": "?명듃濡?mars",
+    "extraction_date": "2026-01-29T10:30:00Z",
+    "total_resources": 185,
+    "strategy": "hybrid"
+  },
+  "resources": [
+    {
+      "id": "RES_001",
+      "name": "intro_image_001",
+      "type": "Image",
+      "format": "png",
+      "original_size": {
+        "width": 1920,
+        "height": 1080
+      },
+      "file_size": 2500000,
+      "thumbnail_path": "resource/intro/images/THUMB_intro_image_001.png",
+      "resource_path": "resource/intro/images/intro_image_001.png",
+      "extracted": false,
+      "last_modified": null,
+      "hash": "abc123...",
+      "status": "available"
+    },
+    {
+      "id": "RES_002",
+      "name": "motor_model_001",
+      "type": "Model",
+      "format": "fbx",
+      "thumbnail_path": "resource/intro/models/THUMB_motor_model_001.png",
+      "resource_path": null,
+      "extracted": false,
+      "status": "available"
+    }
+  ],
+  "statistics": {
+    "images": 169,
+    "models": 14,
+    "videos": 1,
+    "audio": 1,
+    "total": 185
+  }
+}
+```
+
+---
+
+## 4. ?섏젙 ?뚰겕?뚮줈??
+
+### 4.1 湲곕낯 ?뚮줈??
+
+```
+1截뤴깵 ?먯깋 ?④퀎
+   Mars ?뚯씪 遺꾩꽍
+      ??
+   ResourceListInfo 異붿텧 (?꾨즺)
+      ??
+   ?몃꽕??異붿텧 (THUMBNAIL_ONLY)
+      ??
+   RESOURCE_INVENTORY.json ?앹꽦
+      ??
+   VS Code?먯꽌 ?몃깽?좊━ 寃??
+
+2截뤴깵 ?좏깮 ?④퀎
+   "??由ъ냼?ㅻ? ?섏젙?섍퀬 ?띕떎"
+      ??
+   resource_selection.txt??異붽?
+      ??
+   Extract-SelectedResources.ps1 ?ㅽ뻾
+      ??
+   ?먮낯 ?뚯씪 ?뚰겕?ㅽ럹?댁뒪??諛곗튂
+      ??
+   ?댁떆媛?湲곕줉 (蹂寃?異붿쟻??
+
+3截뤴깵 ?몄쭛 ?④퀎
+   VS Code?먯꽌 由ъ냼???섏젙
+   (Photoshop, Blender, Audacity ??
+      ??
+   ?뚯씪 ???(?먮룞 媛먯?)
+      ??
+   ?뚯씪 蹂寃?異붿쟻 ?ㅽ겕由쏀듃 ?ㅽ뻾
+      ??
+   resource_changes.json ?낅뜲?댄듃
+
+4截뤴깵 ?듯빀 ?④퀎
+   ?섏젙??由ъ냼???뺤씤
+      ??
+   MarsCatalogue??李몄“ 異붽?
+      ??
+   ?덈줈??Mars ?뚯씪 ?앹꽦 (MCP)
+      ??
+   View?먯꽌 ?뚯뒪??
+```
+
+### 4.2 蹂寃?異붿쟻 硫붿빱?덉쬁
+
+**RESOURCE_CHANGES.json** (?꾩떆):
+```json
+{
+  "tracking_metadata": {
+    "last_scan": "2026-01-29T15:45:00Z",
+    "base_path": "resource/intro"
+  },
+  "changes": [
+    {
+      "id": "RES_001",
+      "name": "intro_image_001.png",
+      "status": "modified",
+      "original_hash": "abc123",
+      "current_hash": "def456",
+      "last_modified": "2026-01-29T14:30:00Z",
+      "change_type": "content",
+      "action": "update_in_mars"
+    },
+    {
+      "id": "RES_002",
+      "name": "motor_model_001.fbx",
+      "status": "new",
+      "path": "resource/intro/models/motor_model_enhanced.fbx",
+      "added_date": "2026-01-29T15:00:00Z",
+      "action": "add_to_mars"
+    },
+    {
+      "id": "RES_003",
+      "name": "background.png",
+      "status": "deleted",
+      "deleted_date": "2026-01-29T14:15:00Z",
+      "action": "remove_from_mars"
+    }
+  ]
+}
+```
+
+### 4.3 ?먮낯 vs ?섏젙蹂?援щ텇
+
+```
+?뚰겕?ㅽ럹?댁뒪:
+resource/intro/images/
+?쒋?? intro_image_001.png              # ?섏젙蹂?(理쒖쥌)
+?쒋?? .intro_image_001.png.original    # ?먮낯 諛깆뾽 (?④?)
+?쒋?? .intro_image_001.png.sha256      # ?먮낯 ?댁떆
+?붴?? intro_image_001.png.status.json  # 蹂寃?硫뷀??곗씠??
+
+status.json ?덉떆:
+{
+  "file": "intro_image_001.png",
+  "source": "mars",
+  "original_hash": "abc123",
+  "current_hash": "def456",
+  "extraction_date": "2026-01-29T10:00:00Z",
+  "first_modified": "2026-01-29T14:30:00Z",
+  "last_modified": "2026-01-29T15:45:00Z",
+  "change_count": 2,
+  "edits": [
+    {
+      "timestamp": "2026-01-29T14:30:00Z",
+      "description": "?됱긽 蹂댁젙",
+      "hash": "def456"
+    }
+  ]
+}
+```
+
+### 4.4 Mars???ㅼ떆 ?ы븿?쒗궎湲?
+
+```
+?섏젙??由ъ냼???ы룷???꾨줈?몄뒪:
+
+1. resource_changes.json ?쎄린
+2. 蹂寃쎈맂 ?뚯씪 ?앸퀎 (status: "modified", "new")
+3. 媛??뚯씪?????
+   a. ?뚯씪 ?ш린, ?щ㎎ ?뺤씤
+   b. ?꾩슂 ??GZIP ?뺤텞
+   c. ResourceListInfo ?낅뜲?댄듃
+4. 湲곗〈 Mars??Resources ?뱀뀡 泥섎━:
+   a. ?섏젙???뚯씪 援먯껜
+   b. ???뚯씪 異붽?
+   c. ??젣???뚯씪 ?쒓굅
+5. Mars ?뚯씪 ?ш뎄??
+6. 寃利?(?뚯씪 臾닿껐???뺤씤)
+```
+
+---
+
+## 5. 援ы쁽 ?덉떆
+
+### 5.1 Extract-Thumbnails.ps1
+
+```powershell
+<#
+.SYNOPSIS
+Mars ?뚯씪??ResourceListInfo?먯꽌 ?몃꽕?쇱쓣 異붿텧?섍퀬 ?몃깽?좊━ ?앹꽦
+
+.DESCRIPTION
+- ResourceListInfo JSON?먯꽌 Base64 ?몄퐫?⑸맂 ?몃꽕??異붿텧
+- 媛?由ъ냼????낅퀎 ?대뜑??PNG濡????
+- RESOURCE_INVENTORY.json ?앹꽦
+
+.EXAMPLE
+.\Extract-Thumbnails.ps1 -MarsFile "Contents/?명듃濡?mars" -SourceFile "analysis_temp/intro/resource_manifest.json"
+#>
+
+param(
+    [string]$SourceFile = "analysis_temp/intro/resource_manifest.json",
+    [string]$OutputDir = "resource/intro"
+)
+
+function Convert-Base64ToImage {
+    param(
+        [string]$Base64String,
+        [string]$OutputPath
+    )
+    
+    try {
+        $bytes = [Convert]::FromBase64String($Base64String)
+        [IO.File]::WriteAllBytes($OutputPath, $bytes)
+        return $true
+    }
+    catch {
+        Write-Warning "?몃꽕??蹂???ㅽ뙣: $_"
+        return $false
+    }
+}
+
+# 1. ResourceListInfo 濡쒕뱶
+Write-Host "?뱛 由ъ냼???몃깽?좊━ 濡쒕뱶 以?.." -ForegroundColor Cyan
+$manifest = Get-Content $SourceFile | ConvertFrom-Json
+
+# 2. ?대뜑 援ъ“ ?앹꽦
+$folderStructure = @{
+    'Image' = "$OutputDir/images"
+    'Model' = "$OutputDir/models"
+    'Video' = "$OutputDir/videos"
+    'Audio' = "$OutputDir/audio"
+}
+
+foreach ($folder in $folderStructure.Values) {
+    if (-not (Test-Path $folder)) {
+        New-Item -ItemType Directory -Path $folder -Force | Out-Null
+        Write-Host "???대뜑 ?앹꽦: $folder" -ForegroundColor Green
+    }
+}
+
+# 3. ?몃꽕??異붿텧
+$extractedCount = 0
+$failedCount = 0
+
+$inventoryResources = @()
+
+foreach ($resource in $manifest.resources) {
+    $type = $resource.type
+    $name = $resource.name
+    $thumbnail = $resource.thumbnail
+    
+    $targetFolder = $folderStructure[$type]
+    $thumbnailPath = "$targetFolder/THUMB_$name.png"
+    
+    if (Convert-Base64ToImage -Base64String $thumbnail -OutputPath $thumbnailPath) {
+        $extractedCount++
+        Write-Host "??$type - $name" -ForegroundColor Green
+        
+        # ?몃깽?좊━ ??ぉ 異붽?
+        $inventoryResources += @{
+            id = "RES_$('{0:D4}' -f ($inventoryResources.Count + 1))"
+            name = $name
+            type = $type
+            format = if ($type -eq 'Model') { 'fbx' } elseif ($type -eq 'Image') { 'png' } else { 'unknown' }
+            thumbnail_path = "resource/intro/images/THUMB_$name.png"
+            resource_path = $null
+            extracted = $false
+            status = "available"
+        }
+    }
+    else {
+        $failedCount++
+        Write-Host "??$type - $name (?ㅽ뙣)" -ForegroundColor Red
+    }
+}
+
+# 4. RESOURCE_INVENTORY.json ?앹꽦
+$inventory = @{
+    metadata = @{
+        source_mars = "?명듃濡?mars"
+        extraction_date = (Get-Date -AsUTC).ToString("o")
+        total_resources = $manifest.resources.Count
+        strategy = "hybrid"
+    }
+    resources = $inventoryResources
+    statistics = @{
+        images = ($manifest.resources | Where-Object { $_.type -eq 'Image' }).Count
+        models = ($manifest.resources | Where-Object { $_.type -eq 'Model' }).Count
+        videos = ($manifest.resources | Where-Object { $_.type -eq 'Video' }).Count
+        audio = ($manifest.resources | Where-Object { $_.type -eq 'Audio' }).Count
+        total = $manifest.resources.Count
+    }
+}
+
+$inventoryPath = "$OutputDir/RESOURCE_INVENTORY.json"
+$inventory | ConvertTo-Json -Depth 10 | Set-Content $inventoryPath
+Write-Host "`n?뱥 ?몃깽?좊━ ??? $inventoryPath" -ForegroundColor Cyan
+
+# 5. 寃곌낵 ?붿빟
+Write-Host "`n" + "="*50 -ForegroundColor Yellow
+Write-Host "?뱤 異붿텧 寃곌낵" -ForegroundColor Yellow
+Write-Host "="*50 -ForegroundColor Yellow
+Write-Host "???깃났: $extractedCount" -ForegroundColor Green
+Write-Host "???ㅽ뙣: $failedCount" -ForegroundColor Red
+Write-Host "?벀 珥?由ъ냼?? $($manifest.resources.Count)" -ForegroundColor Cyan
+Write-Host "="*50 -ForegroundColor Yellow
+```
+
+### 5.2 Track-Changes.ps1
+
+```powershell
+<#
+.SYNOPSIS
+由ъ냼???대뜑??蹂寃쎌궗??쓣 媛먯??섍퀬 異붿쟻
+
+.DESCRIPTION
+- 媛??뚯씪??SHA256 ?댁떆 怨꾩궛
+- ?먮낯怨?鍮꾧탳?섏뿬 蹂寃?媛먯?
+- resource_changes.json ?낅뜲?댄듃
+#>
+
+param(
+    [string]$ResourceDir = "resource/intro",
+    [string]$InventoryFile = "resource/intro/RESOURCE_INVENTORY.json"
+)
+
+function Get-FileHash256 {
+    param([string]$FilePath)
+    return (Get-FileHash -Path $FilePath -Algorithm SHA256).Hash
+}
+
+Write-Host "?뵇 由ъ냼??蹂寃쎌궗???ㅼ틪 以?.." -ForegroundColor Cyan
+
+# 1. ?몃깽?좊━ 濡쒕뱶
+$inventory = Get-Content $InventoryFile | ConvertFrom-Json
+
+# 2. 紐⑤뱺 由ъ냼???뚯씪 ?ㅼ틪
+$changes = @{
+    tracking_metadata = @{
+        last_scan = (Get-Date -AsUTC).ToString("o")
+        base_path = $ResourceDir
+    }
+    changes = @()
+}
+
+Get-ChildItem -Path $ResourceDir -Recurse -File | 
+Where-Object { $_.Name -notmatch "^\..*" -and $_.Extension -in @('.png', '.fbx', '.mp3', '.mp4') } |
+ForEach-Object {
+    $file = $_
+    $relativePath = $file.FullName.Replace("$ResourceDir\", "").Replace("\", "/")
+    
+    # ?먮낯 ?댁떆 ?뚯씪 ?뺤씤
+    $originalHashPath = "$($file.FullName).original.sha256"
+    $currentHash = Get-FileHash256 -FilePath $file.FullName
+    
+    if (Test-Path $originalHashPath) {
+        $originalHash = Get-Content $originalHashPath
+        
+        if ($originalHash -ne $currentHash) {
+            Write-Host "?륅툘  ?섏젙?? $relativePath" -ForegroundColor Yellow
+            $changes.changes += @{
+                file = $file.Name
+                path = $relativePath
+                status = "modified"
+                original_hash = $originalHash
+                current_hash = $currentHash
+                last_modified = $file.LastWriteTime.ToString("o")
+                action = "update_in_mars"
+            }
+        }
+    }
+    else {
+        # ?덈줈???뚯씪
+        Write-Host "???좉퇋: $relativePath" -ForegroundColor Green
+        
+        # ?먮낯 ?댁떆 湲곕줉
+        $currentHash | Set-Content $originalHashPath
+        
+        $changes.changes += @{
+            file = $file.Name
+            path = $relativePath
+            status = "new"
+            hash = $currentHash
+            added_date = $file.CreationTime.ToString("o")
+            action = "add_to_mars"
+        }
+    }
+}
+
+# 3. ??젣???뚯씪 ?뺤씤
+foreach ($resource in $inventory.resources) {
+    if ($resource.resource_path) {
+        $fullPath = "$($resource.resource_path)"
+        if (-not (Test-Path $fullPath)) {
+            Write-Host "?뿊截? ??젣?? $($resource.name)" -ForegroundColor Red
+            $changes.changes += @{
+                id = $resource.id
+                name = $resource.name
+                status = "deleted"
+                deleted_date = (Get-Date -AsUTC).ToString("o")
+                action = "remove_from_mars"
+            }
+        }
+    }
+}
+
+# 4. 寃곌낵 ???
+$changesPath = "analysis_temp/intro/resource_changes.json"
+$changes | ConvertTo-Json -Depth 10 | Set-Content $changesPath
+
+Write-Host "`n?뱥 蹂寃쎌궗????? $changesPath" -ForegroundColor Cyan
+Write-Host "?뱤 珥?蹂寃? $($changes.changes.Count)" -ForegroundColor Yellow
+```
+
+### 5.3 resource_selection.txt
+
+```txt
+# Extract-SelectedResources.ps1?먯꽌 ?ъ슜??由ъ냼???좏깮 紐⑸줉
+# ?뺤떇: ID|?대쫫|?곗꽑?쒖쐞
+# ?곗꽑?쒖쐞: 1=?믪쓬, 2=以묎컙, 3=??쓬
+
+# 遙섑빐?곷룄 ?대?吏媛 ?꾩슂??寃껊뱾
+RES_0001|intro_image_001|1
+RES_0003|hero_banner|1
+RES_0005|product_image|2
+
+# 3D 紐⑤뜽 (?몄쭛 ?꾩슂)
+RES_0150|motor_model_001|1
+RES_0151|pump_model_001|2
+
+# ?ㅻ뵒??(諛곌꼍??
+RES_0180|background_music|1
+
+# ?섎㉧吏???꾩슂?섎㈃ 異뷀썑 異붽?
+```
+
+---
+
+## 6. 異붿쿇 諛⑹븞: ?섏씠釉뚮━???꾨왂
+
+### 6.1 ?좏깮 ?댁쑀
+
+| ?됯? ??ぉ | A (?몃꽕?쇰쭔) | B (?꾩껜 異붿텧) | C (?섏씠釉뚮━?? 狩?| D (?좉퇋留? |
+|---------|-----------|-----------|----------|---------|
+| **援ы쁽 ?띾룄** | ?△슒??| ?릪 | ?△슒 | ?△슒??|
+| **?몄쭛 ?먯쑀??* | ??| ?끸쐟??| ?끸쐟 | ?끸쐟 |
+| **?쒕쾭 ?⑥쑉** | ?끸쐟??| ??| ?끸쐟 | ?끸쐟 |
+| **湲곗〈 ?ъ궗??* | ?뱥 (李멸퀬留? | ?끸쐟??| ?끸쐟 | ??|
+| **?뺤옣??* | ??쓬 | ?믪쓬 | **留ㅼ슦 ?믪쓬** | ?믪쓬 |
+| **?좎?蹂댁닔** | 媛꾨떒 | 蹂듭옟 | **以묎컙** | 媛꾨떒 |
+| **異뷀썑 留덉씠洹몃젅?댁뀡** | ?대젮? | ?ъ? | **?ъ?** | ?렞 ?꾨꼍 |
+
+### 6.2 ?섏씠釉뚮━???꾨왂??3?④퀎
+
+#### ?윦 ?④퀎 1: 利됱떆 (Thumbnail-Only) - ~1?쒓컙
+```
+紐⑺몴: 湲곗〈 Mars 由ъ냼??鍮좊Ⅸ ?뚯븙
+
+?묒뾽:
+??Extract-Thumbnails.ps1 ?ㅽ뻾
+??RESOURCE_INVENTORY.json ?앹꽦
+??185媛?由ъ냼???몃꽕???쒖떆
+??VS Code?먯꽌 ?꾪솴 寃??
+
+寃곌낵:
+?붴? resource/intro/
+   ?쒋?? images/THUMB_*.png (169媛?
+   ?쒋?? models/THUMB_*.png (14媛?
+   ?붴?? RESOURCE_INVENTORY.json
+
+?④낵:
+- 湲곗〈 Mars???꾩껜 援ъ꽦 ?뚯븙
+- ?ъ궗??媛?ν븳 由ъ냼???앸퀎
+- ?곗꽑?쒖쐞 寃곗젙 (?대뼡 寃껋쓣 癒쇱? 異붿텧??寃껋씤媛)
+```
+
+#### ?윧 ?④퀎 2: ?④린 (?좏깮??異붿텧) - 2-3二?
+```
+紐⑺몴: ?꾩슂??由ъ냼?ㅻ쭔 異붿텧?섏뿬 ?몄쭛 媛???곹깭 援ъ꽦
+
+?묒뾽:
+1. resource_selection.txt???꾩슂??由ъ냼???좏깮
+   ?붴? ?곗꽑?쒖쐞 ?믪쓬: ?대?吏 5-10媛? 紐⑤뜽 2-3媛?
+2. Extract-SelectedResources.ps1 ?ㅽ뻾 (?ㅽ겕由쏀듃 媛쒕컻 ?꾩슂)
+3. 媛??뚯씪???댁떆媛?湲곕줉 (.sha256 ?뚯씪)
+4. MarsCatalogue?먯꽌 李몄“ ?쒖옉
+
+寃곌낵:
+?붴? resource/intro/
+   ?쒋?? images/intro_image_001.png (異붿텧?? ?몄쭛 媛??
+   ?쒋?? models/motor_model_001.fbx
+   ?쒋?? RESOURCE_INVENTORY.json (updated)
+   ?붴?? RESOURCE_CHANGES.json (?앹꽦)
+
+?④낵:
+- ?먮낯 由ъ냼??吏곸젒 ?몄쭛 媛??
+- 蹂寃쎌궗???먮룞 異붿쟻
+- VS Code ?먮뵒???쒖슜 (Photoshop ?뚮윭洹몄씤, 3D 酉곗뼱 ??
+```
+
+#### ?윩 ?④퀎 3: 以묎린 (?듯빀 諛??ы룷?? - 4-6二?
+```
+紐⑺몴: ?섏젙??由ъ냼?ㅻ? Mars ?뚯씪???ㅼ떆 ?ы븿
+
+?묒뾽:
+1. 紐⑤뱺 蹂寃쎌궗???뺤씤 (resource_changes.json)
+2. ?뚯씪 臾닿껐??寃利?
+3. Mars ?뚯씪 ?ш뎄??(?좏깮: 湲곗〈 ?낅뜲?댄듃 or ?좉퇋 ?앹꽦)
+4. View?먯꽌 ?뚯뒪??
+5. MarsCatalogue? 理쒖쥌 ?듯빀
+
+寃곌낵:
+?붴? Contents/
+   ?쒋?? ?명듃濡?modified.mars (?섏젙??由ъ냼???ы븿)
+   ?붴?? ?섎같?꾨컲媛쒖슂_modified.mars
+
+?먮뒗 (沅뚯옣):
+?붴? Contents/?명듃濡?
+   ?쒋?? tree.toml (MCP ?뺤쓽)
+   ?쒋?? objects/ (MCP 媛앹껜)
+   ?쒋?? resource/ (異붿텧 + ?좉퇋 ?쇳빀)
+   ?붴?? Contents/?명듃濡?new.mars (鍮뚮뱶 寃곌낵)
+```
+
+---
+
+## 7. ?쇱젙 諛??④퀎蹂??ㅽ뻾
+
+### 7.1 ?꾨줈?앺듃 濡쒕뱶留?
+
+```
+Week 1: ?먯깋 & 怨꾪쉷
+?뚢? ?? ?꾩옱 遺꾩꽍 ?꾨즺 ??
+?쒋? ?? 4媛吏 ?듭뀡 寃??(?꾩옱)
+?쒋? ?? ?섏씠釉뚮━???꾨왂 ?좏깮 + ?몃? 怨꾪쉷
+?쒋? 紐? ?대뜑 援ъ“ ?ㅺ퀎 諛??ㅽ겕由쏀듃 ?묒뾽
+?붴? 湲? ?뚯뒪??諛?臾몄꽌??
+
+Week 2-3: ?④퀎 1 ?ㅽ뻾 (Thumbnail)
+?쒋? Extract-Thumbnails.ps1 ?꾩꽦
+?쒋? RESOURCE_INVENTORY.json ?앹꽦
+?쒋? VS Code ??쒕낫??援ъ꽦
+?붴? 湲곗〈 由ъ냼??寃??諛??곗꽑?쒖쐞 寃곗젙
+
+Week 4-5: ?④퀎 2 ?ㅽ뻾 (?좏깮??異붿텧)
+?쒋? Extract-SelectedResources.ps1 媛쒕컻
+?쒋? Track-Changes.ps1 媛쒕컻
+?쒋? 由ъ냼???댁떆 異붿쟻 ?쒖뒪??援ъ텞
+?붴? ?곸쐞 5-10媛?由ъ냼??異붿텧 諛??몄쭛
+
+Week 6-8: ?④퀎 3 ?ㅽ뻾 (?듯빀)
+?쒋? 蹂寃쎌궗??寃利?
+?쒋? Mars ?ш뎄???먮뒗 ?좉퇋 ?앹꽦
+?쒋? View?먯꽌 理쒖쥌 ?뚯뒪??
+?붴? MarsCatalogue 理쒖쥌 ?듯빀
+```
+
+### 7.2 蹂묐젹 吏꾪뻾 (沅뚯옣)
+
+```
+?숈떆 吏꾪뻾 媛??
+
+1截뤴깵 ?섏씠釉뚮━??由ъ냼??異붿텧
+   ?붴? Week 2-5 (Extract-Thumbnails + SelectedResources)
+
+2截뤴깵 MarsCatalogue???좉퇋 肄섑뀗痢??묒꽦 (MCP)
+   ?붴? Week 2-8 (湲곗〈 由ъ냼?ㅼ? ?낅┰?곸쑝濡?吏꾪뻾)
+   
+3截뤴깵 由ъ냼???몄쭛 ?꾧뎄 援ъ꽦
+   ?붴? VS Code ?뺤옣 (Material Icon Theme, ?대?吏 ?꾨━酉???
+
+理쒖쥌 ?듯빀:
+?붴? Week 8: 湲곗〈 + ?좉퇋瑜??섎굹??Mars ?뚯씪濡?寃고빀
+```
+
+---
+
+## 8. 寃곕줎 諛??ㅼ쓬 ?④퀎
+
+### 8.1 異붿쿇 利됱떆 ?ㅽ뻾?ы빆
+
+```
+??吏湲?諛붾줈:
+1. ??臾몄꽌 寃??諛?team 怨듭쑀
+2. RESOURCE_INVENTORY.json ?앹꽦 (Extract-Thumbnails.ps1)
+3. VS Code?먯꽌 resource/ ?대뜑 援ъ“ ?뺤씤
+4. resource_selection.txt ?묒꽦 (?곗꽑?쒖쐞 寃곗젙)
+
+???대쾲 二?
+5. Extract-SelectedResources.ps1 媛쒕컻
+6. Track-Changes.ps1 援ы쁽
+7. ?곸쐞 3媛?由ъ냼???쒗뿕 異붿텧
+```
+
+### 8.2 愿??臾몄꽌
+
+- `RESOURCE_EXTRACTION_STRATEGY.md` (?꾩옱 臾몄꽌)
+- `AGENTS.md` (MarsMaker AI 媛?대뱶)
+- `scripts/Extract-Thumbnails.ps1` (?ㅽ뻾 肄붾뱶)
+- `scripts/Extract-SelectedResources.ps1` (?덉젙)
+
+---
+
+**留덉?留??낅뜲?댄듃**: 2026-01-29  
+**?묒꽦**: AI Assistant  
+**?곹깭**: ??寃???꾩슂
+
