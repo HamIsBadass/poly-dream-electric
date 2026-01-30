@@ -1,0 +1,6 @@
+id = "toast_00"
+name = "toast_00"
+object_type = "image"
+resource_path = "../resource/toast_00.png"
+position = { x = 0, y = 0 }
+size = { width = 664, height = 184 }

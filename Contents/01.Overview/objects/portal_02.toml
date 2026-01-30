@@ -1,0 +1,6 @@
+id = "portal_02"
+name = "portal_02"
+object_type = "image"
+resource_path = "../resource/portal_02.png"
+position = { x = 0, y = 0 }
+size = { width = 1024, height = 1024 }

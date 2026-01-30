@@ -1,0 +1,6 @@
+id = "guide_btn_00"
+name = "guide_btn_00"
+object_type = "image"
+resource_path = "../resource/guide_btn_00.png"
+position = { x = 0, y = 0 }
+size = { width = 652, height = 120 }

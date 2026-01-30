@@ -1,0 +1,23 @@
+{
+	"servers": {
+		"mcp-server-marsmaker": {
+			"type": "stdio",
+			"command": "${workspaceFolder}/.vscode/marsmaker-mcp-bridge.exe",
+			"args":[
+				//"-s"
+			],
+			"env": {
+				"GEMINI_API_KEY": "AIzaSyA7o_tDG-SXnhGiOMiCSWWQpiqkAHa8oeY"
+			}
+		},
+		"perplexity": {
+			"type": "stdio",
+			"command": "npx",
+			"args": ["-y", "server-perplexity-ask"],
+			"env": {
+				"PERPLEXITY_API_KEY": "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"
+			}
+		},
+	},
+	"inputs": []
+}

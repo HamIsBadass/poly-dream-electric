@@ -1,0 +1,23 @@
+﻿{
+    "TargetDevice":  "Galaxy S21",
+    "TargetData":  "roe6xwjql820INraGB70gHn1KnNpzCIdMi8vD2mFwVs=",
+    "AresFileUUID":  "",
+    "MakeVersion":  "2.10.0.8.8460.0",
+    "AresImporterVersion":  "2.10.0-pre.9",
+    "Resolution":  {
+                       "x":  2400,
+                       "y":  1080
+                   },
+    "ReferenceResolution":  {
+                                "x":  2400,
+                                "y":  1080
+                            },
+    "useCustomSceneGroupPanel":  false,
+    "IsShowSceneUI":  true,
+    "EstimateResourceUsaseMemorySize":  0,
+    "HtmlFolderPath":  "",
+    "Active":  true,
+    "ComponentName":  "",
+    "ComponentType":  0,
+    "identifier":  ""
+}

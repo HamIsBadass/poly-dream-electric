@@ -1,0 +1,99 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "📊 Analyze 01_Overview.mars",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy", "Bypass",
+        "-Command",
+        "cd '${workspaceFolder}'; & './scripts/Mars_Tools/Parse-MarsFile.ps1' -MarsFilePath 'Contents/01.Overview/01_Overview.mars' -OutputPath 'logs/analysis/01_overview'"
+      ],
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "📊 Analyze 00_Intro.mars",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy", "Bypass",
+        "-Command",
+        "cd '${workspaceFolder}'; & './scripts/Mars_Tools/Parse-MarsFile.ps1' -MarsFilePath 'Contents/00_Intro/00_Intro.mars' -OutputPath 'logs/analysis/00_intro'"
+      ],
+      "problemMatcher": [],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "🔄 Sync Resources",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy", "Bypass",
+        "-Command",
+        "cd '${workspaceFolder}'; & './scripts/Resource_Tools/Sync-Resources.ps1'"
+      ],
+      "problemMatcher": [],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "📝 Track Changes",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy", "Bypass",
+        "-Command",
+        "cd '${workspaceFolder}'; & './scripts/Resource_Tools/Track-Changes.ps1'"
+      ],
+      "problemMatcher": [],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "✨ Full Analysis Pipeline",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy", "Bypass",
+        "-Command",
+        "cd '${workspaceFolder}'; Write-Host '🚀 Full Pipeline 시작...' -ForegroundColor Cyan; Write-Host ''; Write-Host '1️⃣  01_Overview.mars 분석 중...' -ForegroundColor Yellow; & './scripts/Mars_Tools/Parse-MarsFile.ps1' -MarsFilePath 'Contents/01.Overview/01_Overview.mars' -OutputPath 'logs/analysis/01_overview'; Write-Host ''; Write-Host '2️⃣  00_Intro.mars 분석 중...' -ForegroundColor Yellow; & './scripts/Mars_Tools/Parse-MarsFile.ps1' -MarsFilePath 'Contents/00_Intro/00_Intro.mars' -OutputPath 'logs/analysis/00_intro'; Write-Host ''; Write-Host '3️⃣  리소스 동기화 중...' -ForegroundColor Yellow; & './scripts/Resource_Tools/Sync-Resources.ps1'; Write-Host ''; Write-Host '✅ 완료!' -ForegroundColor Green"
+      ],
+      "problemMatcher": [],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      }
+    }
+  ]
+}
