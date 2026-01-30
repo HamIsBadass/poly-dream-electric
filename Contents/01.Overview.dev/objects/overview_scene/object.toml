@@ -1,0 +1,23 @@
+format_version = 1
+id = "overview_scene"
+name = "Overview Scene"
+object_type = "scene"
+active = true
+
+[components.Core]
+name = "Overview Scene"
+active = true
+editing_color = [ 1, 1, 1, 1 ]
+
+[components.Transform]
+position = [ 0.0, 0.0, 0.0 ]
+rotation = [ 0.0, 0.0, 0.0 ]
+scale = [ 1.0, 1.0, 1.0 ]
+
+[components.SceneInfo]
+enable_scene_info = true
+scene_title = "Overview Scene"
+scene_type = "Manual"
+scene_detail = "Main overview scene with 7 AR image objects"
+ambient_light_intensity = 0.4
+environment_image_resource_id = "None"

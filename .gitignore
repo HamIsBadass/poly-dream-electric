@@ -1,0 +1,35 @@
+# Build outputs
+**/build/
+*.mars
+
+# Temporary analysis files
+mars_analysis_temp/
+mars_analysis_overview/
+temp_intro/
+analysis_temp/
+
+# Log files
+logs/execution/errors/*.log
+logs/archive/*.log
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# PowerShell temporary files
+*.tmp
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+.vscode/settings.json
+*.swp
+*.swo
+*~
+
+# Exceptions (keep these)
+!Contents/**/*.mars

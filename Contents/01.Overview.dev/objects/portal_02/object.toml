@@ -1,0 +1,21 @@
+format_version = 1
+id = "portal_02"
+name = "portal_02"
+object_type = "image"
+active = true
+
+[components.Core]
+name = "portal_02"
+active = true
+editing_color = [ 1, 1, 1, 1 ]
+
+[components.Transform]
+position = [ 2.5, 0.0, 0.0 ]
+rotation = [ 0.0, 0.0, 0.0 ]
+scale = [ 1.024, 1.024, 1.0 ]
+
+[components.Resource]
+resource_path = "portal_02.png"
+
+[components.Image]
+enable_interaction = true

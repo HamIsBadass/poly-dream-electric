@@ -1,0 +1,25 @@
+format_version = 1
+roots = ["SCENE_GROUP_INTRO_GUID"]
+
+# ====== Scene Group (최상위) ======
+[nodes."SCENE_GROUP_INTRO_GUID"]
+name = "인트로"
+children = ["SCENE_INTRO_GUID"]
+
+# ====== Main Scene ======
+[nodes."SCENE_INTRO_GUID"]
+name = "Intro Scene"
+children = []
+
+# ====== Objects (아래에 추가) ======
+# 3단계에서 기존 mars 파일 분석 후 추가할 예정
+# 형식:
+# [nodes."OBJECT_GUID"]
+# name = "오브젝트 이름"
+# 
+# 예시:
+# [nodes."OBJ_TEXT_TITLE_GUID"]
+# name = "제목"
+#
+# [nodes."OBJ_IMAGE_BG_GUID"]
+# name = "배경"

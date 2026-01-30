@@ -1,0 +1,50 @@
+format_version = 1
+id = "overview_scene_group"
+roots = [ "overview_scene_group" ]
+
+[nodes."overview_scene_group"]
+id = "overview_scene_group"
+name = "Overview Scene Group"
+object_type = "scene_group"
+children = [ "overview_scene" ]
+
+[nodes."overview_scene"]
+id = "overview_scene"
+name = "Overview Scene"
+object_type = "scene"
+children = [ "gnb_00", "guide_00", "guide_btn_00", "poi_arrow_00", "portal_01", "portal_02", "toast_00" ]
+
+[nodes."gnb_00"]
+id = "gnb_00"
+name = "gnb_00"
+object_type = "image"
+
+[nodes."guide_00"]
+id = "guide_00"
+name = "guide_00"
+object_type = "image"
+
+[nodes."guide_btn_00"]
+id = "guide_btn_00"
+name = "guide_btn_00"
+object_type = "image"
+
+[nodes."poi_arrow_00"]
+id = "poi_arrow_00"
+name = "poi_arrow_00"
+object_type = "image"
+
+[nodes."portal_01"]
+id = "portal_01"
+name = "portal_01"
+object_type = "image"
+
+[nodes."portal_02"]
+id = "portal_02"
+name = "portal_02"
+object_type = "image"
+
+[nodes."toast_00"]
+id = "toast_00"
+name = "toast_00"
+object_type = "image"

@@ -1,0 +1,21 @@
+format_version = 1
+id = "toast_00"
+name = "toast_00"
+object_type = "image"
+active = true
+
+[components.Core]
+name = "toast_00"
+active = true
+editing_color = [ 1, 1, 1, 1 ]
+
+[components.Transform]
+position = [ 3.0, 0.0, 0.0 ]
+rotation = [ 0.0, 0.0, 0.0 ]
+scale = [ 0.664, 0.184, 1.0 ]
+
+[components.Resource]
+resource_path = "toast_00.png"
+
+[components.Image]
+enable_interaction = true

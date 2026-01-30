@@ -1,0 +1,21 @@
+format_version = 1
+id = "guide_btn_00"
+name = "guide_btn_00"
+object_type = "image"
+active = true
+
+[components.Core]
+name = "guide_btn_00"
+active = true
+editing_color = [ 1, 1, 1, 1 ]
+
+[components.Transform]
+position = [ 1.0, 0.0, 0.0 ]
+rotation = [ 0.0, 0.0, 0.0 ]
+scale = [ 0.652, 0.12, 1.0 ]
+
+[components.Resource]
+resource_path = "guide_btn_00.png"
+
+[components.Image]
+enable_interaction = true
